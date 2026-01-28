@@ -3,8 +3,9 @@ package edu.aitu.oop3.repositories.impl;
 import edu.aitu.oop3.db.DatabaseConnection;
 import edu.aitu.oop3.entities.Ticket;
 import edu.aitu.oop3.repositories.TicketRepository;
-
+import java.util.List;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class TicketRepositoryImpl implements TicketRepository {
 
@@ -23,4 +24,29 @@ public class TicketRepositoryImpl implements TicketRepository {
             e.printStackTrace();
         }
     }
+    @Override
+    public List<Ticket> findAll() {
+        List<Ticket> tickets = new ArrayList<>();
+        String sql = "SELECT * FROM tickets";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Ticket t = new Ticket();
+                t.setId(rs.getInt("id"));
+                t.setEventId(rs.getInt("event_id"));
+                t.setSeatId(rs.getInt("seat_id"));
+                t.setCustomerId(rs.getInt("customer_id"));
+                t.setTicketCode(rs.getString("ticket_code"));
+                tickets.add(t);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tickets;
+    }
+
 }
