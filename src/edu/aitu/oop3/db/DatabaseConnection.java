@@ -27,7 +27,7 @@ public class DatabaseConnection {
             }
             return value;
         } catch (IOException e) {
-            throw new RuntimeException("Cannot load DB_PASSWORD from config.properties", e);
+            throw new RuntimeException("Cannot load DB_PASSWORD from ", e);
         }
     }
 
