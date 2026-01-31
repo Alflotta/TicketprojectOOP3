@@ -38,6 +38,46 @@ public class Event {
     public void setDate(LocalDateTime date) { this.date = date; }
     public void setCancelled(boolean cancelled) { this.cancelled = cancelled; }
 
+    public static class EventBuilder {
+        private int id;
+        private String name;
+        private String location;
+        private LocalDateTime date;
+        private boolean cancelled;
+
+        public EventBuilder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public EventBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public EventBuilder location(String location) {
+            this.location = location;
+            return this;
+        }
+
+        public EventBuilder date(LocalDateTime date) {
+            this.date = date;
+            return this;
+        }
+
+        public EventBuilder cancelled(boolean cancelled) {
+            this.cancelled = cancelled;
+            return this;
+        }
+
+        public Event build() {
+            if (id != 0) {
+                return new Event(id, name, location, date, cancelled);
+            }
+            return new Event(name, location, date, cancelled);
+        }
+    }
+
     @Override
     public String toString() {
         return "Event{id=" + id + ", name='" + name + "', location='" + location + "', date=" + date + ", cancelled=" + cancelled + "}";

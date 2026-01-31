@@ -3,11 +3,16 @@ package edu.aitu.oop3.services;
 import edu.aitu.oop3.entities.Event;
 import edu.aitu.oop3.entities.Seat;
 import edu.aitu.oop3.entities.Ticket;
+import edu.aitu.oop3.entities.TicketType;
 import edu.aitu.oop3.exceptions.EventCancelledException;
 import edu.aitu.oop3.exceptions.SeatAlreadyBookedException;
+import edu.aitu.oop3.factories.TicketFactory;
 import edu.aitu.oop3.repositories.EventRepository;
 import edu.aitu.oop3.repositories.SeatRepository;
 import edu.aitu.oop3.repositories.TicketRepository;
+import edu.aitu.oop3.utils.SearchResult;
+
+import java.util.List;
 
 public class TicketService {
 
@@ -21,7 +26,21 @@ public class TicketService {
         this.ticketRepo = ticketRepo;
     }
 
-    public void buyTicket(int eventId, int seatId, int customerId, String ticketCode) {
+    // ✅ Generics
+    public SearchResult<Event> getAllEvents() {
+        List<Event> events = eventRepo.findAll();
+        return new SearchResult<>(events);
+    }
+
+    // ✅ Generics
+    public SearchResult<Ticket> getAllTickets() {
+        List<Ticket> tickets = ticketRepo.findAll();
+        return new SearchResult<>(tickets);
+    }
+
+    // ✅ TicketType  + Factory
+    public void buyTicket(int eventId, int seatId, int customerId, String ticketCode, TicketType type) {
+
         Event event = eventRepo.findById(eventId);
         if (event == null) throw new RuntimeException("Event not found");
 
@@ -37,9 +56,10 @@ public class TicketService {
         // reserve seat once
         seatRepo.reserve(seatId);
 
+        // ✅ ticket          Factory
+        Ticket ticket = TicketFactory.createTicket(type, eventId, seatId, customerId, ticketCode);
+
         // save ticket
-        Ticket ticket = new Ticket(eventId, seatId, customerId, ticketCode);
         ticketRepo.save(ticket);
     }
 }
-
