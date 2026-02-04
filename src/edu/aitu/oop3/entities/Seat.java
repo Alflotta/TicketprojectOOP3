@@ -13,7 +13,6 @@ public class Seat {
         this.seatNumber = seatNumber;
         this.reserved = reserved;
     }
-
     public Seat(int id, int eventId, String seatNumber, boolean reserved) {
         this.id = id;
         this.eventId = eventId;

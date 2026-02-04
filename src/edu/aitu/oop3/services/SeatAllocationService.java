@@ -17,7 +17,6 @@ public class SeatAllocationService {
         if (seat == null) {
             throw new RuntimeException("Seat not found");
         }
-
         if (seat.isReserved()) {
             throw new SeatAlreadyBookedException();
         }

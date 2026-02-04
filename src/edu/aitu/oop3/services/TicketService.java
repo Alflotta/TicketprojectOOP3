@@ -8,6 +8,8 @@ import edu.aitu.oop3.exceptions.SeatAlreadyBookedException;
 import edu.aitu.oop3.repositories.EventRepository;
 import edu.aitu.oop3.repositories.SeatRepository;
 import edu.aitu.oop3.repositories.TicketRepository;
+import edu.aitu.oop3.tickets.TicketType;
+import edu.aitu.oop3.tickets.TicketFactory;
 
 public class TicketService {
 
@@ -21,7 +23,7 @@ public class TicketService {
         this.ticketRepo = ticketRepo;
     }
 
-    public void buyTicket(int eventId, int seatId, int customerId, String ticketCode) {
+    public void buyTicket(int eventId, int seatId, int customerId, String ticketCode, TicketType type) {
         Event event = eventRepo.findById(eventId);
         if (event == null) throw new RuntimeException("Event not found");
 
@@ -34,11 +36,14 @@ public class TicketService {
 
         if (seat.isReserved()) throw new SeatAlreadyBookedException();
 
-        // reserve seat once
         seatRepo.reserve(seatId);
 
-        // save ticket
+        double basePrice = event.getBasePrice();
+        double finalPrice = TicketFactory.calculatePrice(type, basePrice);
+
         Ticket ticket = new Ticket(eventId, seatId, customerId, ticketCode);
+        ticket.setTicketType(type.name());
+        ticket.setPrice(finalPrice);
         ticketRepo.save(ticket);
     }
 }

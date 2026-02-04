@@ -8,6 +8,14 @@ public class Ticket {
     private String ticketCode;
 
     public Ticket() {}
+    private String ticketType;
+    private double price;
+    public String getTicketType() { return ticketType; }
+    public void setTicketType(String ticketType) { this.ticketType = ticketType; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
 
     public Ticket(int eventId, int seatId, int customerId, String ticketCode) {
         this.eventId = eventId;

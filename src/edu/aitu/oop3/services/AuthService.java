@@ -16,7 +16,6 @@ public class AuthService {
 
         if (customer == null)
             throw new AuthenticationException("User not found");
-
         if (!customer.getPassword().equals(password))
             throw new AuthenticationException("Wrong password");
 

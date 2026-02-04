@@ -31,12 +31,22 @@ public class Event {
     public String getLocation() { return location; }
     public LocalDateTime getDate() { return date; }
     public boolean isCancelled() { return cancelled; }
+    private double basePrice;
+
 
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setLocation(String location) { this.location = location; }
     public void setDate(LocalDateTime date) { this.date = date; }
     public void setCancelled(boolean cancelled) { this.cancelled = cancelled; }
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
 
     @Override
     public String toString() {
