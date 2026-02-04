@@ -15,7 +15,6 @@ public class EventBuilder {
         event.setLocation(venue);
         return this;
     }
-
     public EventBuilder schedule(LocalDateTime dateTime) {
         event.setDate(dateTime);
         return this;

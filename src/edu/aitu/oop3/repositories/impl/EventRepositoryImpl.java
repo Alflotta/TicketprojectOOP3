@@ -7,7 +7,6 @@ import edu.aitu.oop3.repositories.EventRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class EventRepositoryImpl implements EventRepository {
 
     @Override

@@ -35,7 +35,6 @@ public class Main {
 
         AuthService authService = new AuthService(customerRepo);
         TicketService ticketService = new TicketService(eventRepo, seatRepo, ticketRepo);
-
         Scanner sc = new Scanner(System.in);
         Customer currentUser = null;
 

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeatRepositoryImpl implements SeatRepository {
-
     @Override
     public Seat findById(int id) {
         String sql = "SELECT id, event_id, seat_number, reserved FROM seats WHERE id = ?";

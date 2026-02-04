@@ -6,7 +6,6 @@ import edu.aitu.oop3.repositories.SeatRepository;
 public class SeatAllocationService {
 
     private final SeatRepository seatRepository;
-
     public SeatAllocationService(SeatRepository seatRepository) {
         this.seatRepository = seatRepository;
     }

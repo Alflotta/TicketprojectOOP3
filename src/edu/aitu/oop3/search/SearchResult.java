@@ -1,8 +1,8 @@
 package edu.aitu.oop3.search;
 
 import java.util.List;
-
 public class SearchResult<T> {
+
     private final List<T> items;
     private final int total;
 

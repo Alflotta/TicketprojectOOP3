@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketRepositoryImpl implements TicketRepository {
-
     @Override
     public void save(Ticket ticket) {
         String sql = "INSERT INTO tickets(event_id, seat_id, customer_id, ticket_code, ticket_type, price) " +

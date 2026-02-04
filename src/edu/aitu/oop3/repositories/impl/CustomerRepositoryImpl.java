@@ -4,7 +4,6 @@ import edu.aitu.oop3.entities.Customer;
 import edu.aitu.oop3.repositories.CustomerRepository;
 
 import java.sql.*;
-
 public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
